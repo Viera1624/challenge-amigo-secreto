@@ -36,7 +36,7 @@ function agregarAmigo() {
             if (listaAmigos.includes(amigoIngresado)) {
                 alert("El nombre ya está en la lista");
                 vaciarCampo();
-                return agregarAmigo();
+                //return agregarAmigo();
 
             } else {
                 //Añadir amigo a la lista
