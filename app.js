@@ -1,5 +1,6 @@
 // Variables
 let listaAmigos = [];
+let listaAmigosSorteados = [];
 
 function vaciarCampo() {
     document.getElementById("amigo").value = '';
@@ -10,9 +11,9 @@ function mostrarLista() {
     listaMostrada.innerHTML = "";
 
     for (let posicion = 0; posicion < listaAmigos.length; posicion++) {
-        let amigo = document.createElement('li'); //Crea un elemento <li>
-        amigo.textContent = listaAmigos[posicion];
-        listaMostrada.appendChild(amigo);
+        let amigo = document.createElement('li'); // Crea un elemento <li>
+        amigo.textContent = listaAmigos[posicion]; // Añade el nombre del amigo
+        listaMostrada.appendChild(amigo); // Muestra el nombre en la lista
 
     }
 }
@@ -41,7 +42,7 @@ function agregarAmigo() {
             } else {
                 //Añadir amigo a la lista
                 listaAmigos.push(amigoIngresado);
-                console.log(listaAmigos);
+                
             }
 
         }
@@ -57,6 +58,38 @@ function agregarAmigo() {
 
 
     }
+
+
+}
+
+function sortearAmigo() {
+    // Verifica que la lista no esté vacía
+    if (listaAmigos == '') {
+        alert("Por favor ingrese al menos dos nombres para sortear");
+    } else {
+        // Sortear un amigo
+        let sortear = parseInt(Math.random() * listaAmigos.length);
+        let amigoSorteado = listaAmigos[sortear];
+
+        // Si ya se sortearon todos los amigos
+        if (listaAmigosSorteados.length == listaAmigos.length) {
+            alert("Ya se sortearon todos los amigos añade más o recarga la página");
+
+            // Si el nombre ya se sorteó   
+        } else {
+            if (listaAmigosSorteados.includes(amigoSorteado)) {
+                return sortearAmigo();
+
+            }
+            listaAmigosSorteados.push(amigoSorteado);
+            
+
+            // Mostrar el amigo sorteado
+            let resultado = document.getElementById("resultado").innerHTML = amigoSorteado;
+
+        }
+    }
+
 
 
 }
